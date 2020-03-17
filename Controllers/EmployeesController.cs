@@ -53,11 +53,12 @@ namespace EmployeesInformation.Controllers
             {
                 db.Employees.Add(employees);
                 db.SaveChanges();
+                TempData["msg"] = "<script>alert('Change succesfully');</script>";
                 return RedirectToAction("Details", "Employees", new { id = employees.EmployeeID });
             }
             else
             {
-                return RedirectToAction("Error");
+                TempData["err"] = "<script>alert('Create Error');</script>";
             }
 
             return View(employees);
@@ -127,12 +128,6 @@ namespace EmployeesInformation.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult Error()
-        {
-            TempData["Message"] = "This is my Error";
-            return RedirectToAction("Error", "Employees", TempData["Message"]);
         }
     }
 }
