@@ -53,7 +53,7 @@ namespace EmployeesInformation.Controllers
             {
                 db.Employees.Add(employees);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Employees", new { id = employees.EmployeeID });
             }
             else
             {
@@ -132,7 +132,7 @@ namespace EmployeesInformation.Controllers
         public ActionResult Error()
         {
             TempData["Message"] = "This is my Error";
-            return RedirectToAction("Error", "Error", TempData["Message"]);
+            return RedirectToAction("Error", "Employees", TempData["Message"]);
         }
     }
 }
